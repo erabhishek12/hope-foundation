@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hope Foundation - Make a Difference</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #3498db, #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .mission-statement {
+            font-size: 1.1em;
+            color: #34495e;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .donation-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .images-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .image-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-placeholder {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .image-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-card:hover .image-placeholder::before {
+            opacity: 1;
+        }
+
+        .image-card h3 {
+            padding: 20px;
+            color: #2c3e50;
+            font-size: 1.1em;
+        }
+
+        .qr-container {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(248, 249, 250, 0.8);
+            border-radius: 15px;
+            border: 2px dashed #3498db;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            background: #f8f4e6;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .donation-amounts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .amount-btn {
+            padding: 15px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .amount-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.4);
+            background: linear-gradient(135deg, #2980b9, #3498db);
+        }
+
+        .impact-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 40px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .scan-instruction {
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        .urgency-banner {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .images-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .donation-amounts {
+                grid-template-columns: 1fr;
+            }
+            
+            .impact-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="fade-in">
+            <h1>Hope Foundation</h1>
+            <div class="subtitle">Building Bridges of Compassion</div>
+            <p class="mission-statement">
+                Every individual deserves dignity, hope, and the opportunity to thrive. Your generous donation helps us provide essential support to those facing life's greatest challenges - from basic necessities to empowerment programs that restore independence and self-worth.
+            </p>
+        </header>
+
+        <div class="urgency-banner fade-in">
+            <strong>🚨 URGENT NEED: Winter is approaching and vulnerable individuals need immediate assistance for shelter, food, and medical care.</strong>
+        </div>
+
+        <div class="main-content">
+            <div class="donation-section fade-in">
+                <h2 style="color: #2c3e50; margin-bottom: 20px; font-size: 2em;">Make Your Donation</h2>
+                
+                <div class="qr-container">
+                    <div class="qr-code">
+                        <img src="https://i.postimg.cc/htHJtVWw/Screenshot-2025-06-09-19-22-25-95-ba41e9a642e6e0e2b03656bfbbffd6e4.jpg" alt="Donation QR Code">
+                    </div>
+                    <p class="scan-instruction">
+                        📱 <strong>Scan QR Code</strong> with your phone camera<br>
+                        Secure • Fast • Direct Impact
+                    </p>
+                </div>
+
+                <div class="donation-amounts">
+                    <button class="amount-btn" onclick="selectAmount(25)">₹25<br><small>One meal</small></button>
+                    <button class="amount-btn" onclick="selectAmount(50)">₹50<br><small>Daily essentials</small></button>
+                    <button class="amount-btn" onclick="selectAmount(100)">₹100<br><small>Medical aid</small></button>
+                    <button class="amount-btn" onclick="selectAmount(250)">₹250<br><small>Weekly support</small></button>
+                    <button class="amount-btn" onclick="selectAmount(500)">₹500<br><small>Monthly care</small></button>
+                    <button class="amount-btn" onclick="selectAmount('custom')">Custom<br><small>Your choice</small></button>
+                </div>
+
+                <p style="color: #7f8c8d; font-size: 0.9em; margin-top: 20px;">
+                    💳 All major payment methods accepted • 🔒 Secure encryption • 📧 Instant receipt
+                </p>
+            </div>
+
+            <div class="images-section fade-in">
+                <div class="image-card">
+                    <div class="image-placeholder" style="background-image: url('https://i.postimg.cc/JhMQhwWS/IMG-20250609-WA0009.jpg')">
+                        👥 Community Support
+                    </div>
+                    <h3>Supporting Vulnerable Individuals</h3>
+                </div>
+                
+                <div class="image-card">
+                    <div class="image-placeholder" style="background-image: url('https://i.postimg.cc/d0ZqzH5X/IMG-20250609-WA0014.jpg')">
+                        ♿ Accessibility First
+                    </div>
+                    <h3>Empowering People with Disabilities</h3>
+                </div>
+                
+                <div class="image-card">
+                    <div class="image-placeholder" style="background-image: url('https://i.postimg.cc/qqJHMjGp/IMG-20250609-WA0023.jpg')">
+                        🏠 Shelter & Care
+                    </div>
+                    <h3>Providing Safe Housing</h3>
+                </div>
+                
+                <div class="image-card">
+                    <div class="image-placeholder" style="background-image: url('https://i.postimg.cc/CLKp3r1N/IMG-20250609-WA0025.jpg')">
+                        🤝 Dignity & Hope
+                    </div>
+                    <h3>Restoring Self-Worth</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="impact-section fade-in">
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">Your Impact This Year</h2>
+            <p style="color: #7f8c8d; margin-bottom: 30px;">Thanks to generous donors like you, we've made a real difference</p>
+            
+            <div class="impact-stats">
+                <div class="stat-card">
+                    <div class="stat-number">2,847</div>
+                    <div>People Helped</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15,420</div>
+                    <div>Meals Provided</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">₹4.2L</div>
+                    <div>Total Donations</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectAmount(amount) {
+            if (amount === 'custom') {
+                const customAmount = prompt('Enter your donation amount (₹):');
+                if (customAmount && !isNaN(customAmount) && customAmount > 0) {
+                    alert(`Thank you for choosing to donate ₹${customAmount}! Please scan the QR code to complete your donation.`);
+                }
+            } else {
+                alert(`Thank you for choosing to donate ₹${amount}! Please scan the QR code to complete your donation.`);
+            }
+        }
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 1s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.amount-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
